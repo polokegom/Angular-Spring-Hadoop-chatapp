@@ -1,0 +1,13 @@
+
+<nav class="navbar-skeleton">            
+
+    <ul  id="navbar-right-items">
+        <li (click)="loginFunc()" [style.display]="loggedinStatus()? 'none':'block'">LOGIN</li>
+        <li (click)="regFunc()" [style.display]="loggedinStatus()? 'none':'block'">REGISTER</li>
+        <!--<a routerLink="" [style.display]="!loggedinStatus()? 'none':'block'"><li>SignOut</li></a>
+        -->
+    </ul> 
+    
+
+
+</nav>
