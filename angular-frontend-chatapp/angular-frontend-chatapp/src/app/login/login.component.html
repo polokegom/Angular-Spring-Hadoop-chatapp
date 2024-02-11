@@ -2,7 +2,7 @@
     
   <div id="headers">
     <span id="title">Sign In</span>
-    <a routerLink=""><img id="exit" src="../../assets/cross.png"></a>
+    <img id="exit" src="../../assets/cross.png" (click)="closeWindow()">
   </div>
   <form class="winLogin">
     <span style="font-size: 12px;margin-right:160px; color:gray">Email:</span>
@@ -10,7 +10,7 @@
     <input type="text" class="form-login-input" placeholder=""/>
     <span style="margin-top:5px;font-size: 12px;margin-right:145px; color:gray">Password:</span>
     <input type="password" class="form-login-input" />
-    <a routerLink="/menu"><input type="button" class="form-login-btn" value="Continue" /></a>
+    <a routerLink="/chatroom"><input type="button" class="form-login-btn" value="Continue" /></a>
     <a class="form-login-link">Trouble logging in?</a>
   </form>
 

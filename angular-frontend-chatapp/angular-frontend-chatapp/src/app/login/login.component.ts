@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
+import { LocalstoreService } from '../localstore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css' ]
 })
 export class LoginComponent {
 
-  constructor(public dialog:MatDialog){
+  constructor(private localStore: LocalstoreService, private router:Router){
 
   }
 
+  closeWindow() {
+    this.localStore.closeAuthWin()
+    this.router.navigate(['/']);
+
+  }
 }

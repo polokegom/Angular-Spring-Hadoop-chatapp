@@ -14,19 +14,19 @@ export class NavbarComponent {
 
   constructor(private router:Router,private local_store: LocalstoreService,private overlay:OverlayServiceService){}
   
-  getSignInStatus():boolean{
-      return this.local_store.isLoggedIn
+  isAuthWinOpen():boolean{
+      return this.local_store.isAuthWinLive
   }
   
   doLogin():void{
      // this.overlay.openOverlay(LoginComponent)
-     this.local_store.isLoggedIn = true
+     this.local_store.openAuthWin();
      this.router.navigate(['/login']);
   }
 
   doRegister():void{
       //this.overlay.openOverlay(RegisterComponent)
-      this.local_store.isLoggedIn = true
+      this.local_store.openAuthWin()
       this.router.navigate(['/register']);
   }
 

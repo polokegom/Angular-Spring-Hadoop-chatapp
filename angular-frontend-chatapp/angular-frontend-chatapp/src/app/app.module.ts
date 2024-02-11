@@ -10,6 +10,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { ChatroomComponent } from './chatroom/chatroom.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     RegisterComponent,
     AuthenticateComponent,
     ChatroomComponent,
-    ContactsComponent
+    ContactsComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,

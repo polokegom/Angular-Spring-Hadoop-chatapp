@@ -10,7 +10,7 @@
     border: 0.1rem solid #cfcfcf;
     padding: 3rem;
     width: 300px;
-    height: 420px;
+    height: 350px;
 }
   
 #exit {
@@ -19,7 +19,7 @@
   height:30px;
 
   font-weight: bold;
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 #title {
