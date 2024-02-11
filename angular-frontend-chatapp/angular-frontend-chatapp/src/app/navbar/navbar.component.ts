@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 import { OverlayServiceService } from '../overlay-service.service';
+import { LocalstoreService } from '../localstore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,14 +12,22 @@ import { OverlayServiceService } from '../overlay-service.service';
 })
 export class NavbarComponent {
 
-  constructor(private overlay:OverlayServiceService){}
+  constructor(private router:Router,private local_store: LocalstoreService,private overlay:OverlayServiceService){}
+  
+  getSignInStatus():boolean{
+      return this.local_store.isLoggedIn
+  }
+  
   doLogin():void{
-      this.overlay.openOverlay(LoginComponent)
+     // this.overlay.openOverlay(LoginComponent)
+     this.local_store.isLoggedIn = true
+     this.router.navigate(['/login']);
   }
 
   doRegister():void{
-      this.overlay.openOverlay(RegisterComponent)
- 
+      //this.overlay.openOverlay(RegisterComponent)
+      this.local_store.isLoggedIn = true
+      this.router.navigate(['/register']);
   }
 
 }
