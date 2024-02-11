@@ -1,4 +1,13 @@
+.base {
+  
 
+    width: 200px;
+    height: 200px;
+}
+.my-dialog {
+    transform: translate(-50%, -50%) !important;
+  }
+  
 nav{
     margin-top:0px;
     background-color: rgb(255, 255, 255);

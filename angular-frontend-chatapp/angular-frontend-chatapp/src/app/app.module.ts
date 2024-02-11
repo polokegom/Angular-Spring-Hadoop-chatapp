@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { ChatroomComponent } from './chatroom/chatroom.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ContactsComponent } from './contacts/contacts.component';
   imports: [
     BrowserModule,
     MatMenuModule,
+    MatDialogModule,
     AppRoutingModule
   ],
   providers: [],
