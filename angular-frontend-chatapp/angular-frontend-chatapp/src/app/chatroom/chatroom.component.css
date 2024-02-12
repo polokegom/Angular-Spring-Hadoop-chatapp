@@ -1,0 +1,96 @@
+:root {
+    --navbar_height: 200px; 
+  }
+
+#contactParentField{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(232, 228, 228);
+    height:60px
+}
+
+
+#chatroom{
+
+    display:flex;
+    min-height: calc(100vh - 72px);
+}
+
+#contacts{
+    border-right: 1px solid rgb(232, 228, 228);
+    width: 280px;
+}
+
+#smsArea{
+    resize: none;
+    width:400px;
+    height:17px;
+    padding:12px;
+    padding-left: 15px;
+    padding-right: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    resize: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+}
+
+#sendSms{
+
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    transform: translateY(-50%);
+    width: 20px;
+    height: auto; 
+
+}
+
+#sendSms:hover{
+    cursor:pointer;
+}
+
+#smsFieldParent{
+    display:flex;
+    justify-content: center;
+    background-color: rgb(222, 216, 216);
+
+}
+
+.smsBlock {
+
+    border:1px solid;
+}
+.smsGroup{
+    min-height: calc(100vh - 130px);
+
+}
+
+#container {
+    position: relative;
+  }
+#smsFieldBackground{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    height:60px;
+    background-color: rgb(222, 216, 216);
+}
+
+
+#contactField{
+    width: 192px;
+    height:30px;
+    border: 1px solid rgb(145, 142, 142);;
+    border-radius: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+#chats {
+    min-width: calc(100vw - 280px);
+    display:grid;
+}

@@ -14,6 +14,11 @@ export class RegisterComponent {
 
   }
 
+  doRegister(){
+    alert("Autenticate account")
+    this.closeWindow()
+  }
+
   closeWindow() {
     this.localStore.closeAuthWin()
     this.router.navigate(['/']);

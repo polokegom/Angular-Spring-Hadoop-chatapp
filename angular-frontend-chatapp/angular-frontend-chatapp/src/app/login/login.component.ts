@@ -14,6 +14,12 @@ export class LoginComponent {
 
   }
 
+  doLogin(){
+    this.localStore.isSignIn = true;
+    this.router.navigate(['/chatroom']);
+
+  }
+
   closeWindow() {
     this.localStore.closeAuthWin()
     this.router.navigate(['/']);

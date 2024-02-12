@@ -10,7 +10,7 @@
     <input type="text" class="form-login-input" placeholder=""/>
     <span style="margin-top:5px;font-size: 12px;margin-right:145px; color:gray">Password:</span>
     <input type="password" class="form-login-input" />
-    <a routerLink="/chatroom"><input type="button" class="form-login-btn" value="Continue" /></a>
+    <input type="button" class="form-login-btn" value="Continue" (click)="doLogin()" />
     <a class="form-login-link">Trouble logging in?</a>
   </form>
 

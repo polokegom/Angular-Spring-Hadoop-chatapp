@@ -7,15 +7,15 @@ export class LocalstoreService {
   
   
   authToken: any;
-  isLoggedIn: boolean =false;
+  isSignIn: boolean =false;
   isAuthWinLive: boolean = false;
   
   
-  public getSignInStatus(): any {
-      return this.isLoggedIn;;
+  public getSignInStatus(): boolean {
+      return this.isSignIn;
   }
 
-  public isAuthWinOpen(): any {
+  public isAuthWinOpen(): boolean {
     return this.isAuthWinLive
   }
 

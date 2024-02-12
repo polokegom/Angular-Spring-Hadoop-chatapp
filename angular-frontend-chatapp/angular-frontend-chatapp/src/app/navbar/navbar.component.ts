@@ -17,6 +17,11 @@ export class NavbarComponent {
   isAuthWinOpen():boolean{
       return this.local_store.isAuthWinLive
   }
+
+  isSignedIn():boolean{
+    return this.local_store.isSignIn
+}
+
   
   doLogin():void{
      // this.overlay.openOverlay(LoginComponent)
@@ -28,6 +33,14 @@ export class NavbarComponent {
       //this.overlay.openOverlay(RegisterComponent)
       this.local_store.openAuthWin()
       this.router.navigate(['/register']);
+  }
+
+  doLogout():void{
+    //this.overlay.openOverlay(RegisterComponent)
+    this.local_store.isSignIn = false
+    this.local_store.closeAuthWin()
+    this.router.navigate(['/']);
+    
   }
 
 }
