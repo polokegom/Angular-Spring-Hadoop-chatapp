@@ -1,18 +1,43 @@
-<div id="chatroom">
+<div id="chatroom" [ngClass]="gotoContacts()?'contactPage':''">
     <div id="contacts">
         <div id="contactParentField">
             <input id="contactField" placeholder="Search Contact">
         </div>
+        <div id="contactBox">
+        <ul>
+
+            <li>Britney</li>
+            <li>Stast</li>
+            <li>Thato</li>
+            <li>Tigita</li>
+            <li>Tomoko</li>
+
+        
+        </ul>
+    
+        </div>
     </div>
     <div id="chats">
-        <div class="smsGroup">
-           
+        <div id="chatHeader">
+           Chat: Polokego Makgakge
+        </div>
+        <div class="smsBox">
+           <ul>
+
+            <li>Britney</li>
+            <li style="background-color: rgb(250, 247, 247);">Stast</li>
+            <li>Thato</li>
+            <li style="background-color: rgb(250, 247, 247);">Tigita</li>
+            <li>Tomoko</li>
+
+        
+        </ul>
         </div>
         <div id="smsFieldParent">
             <div id="smsFieldBackground">
                  <div id="container">
-                    <textarea id="smsArea"></textarea>
-                    <img src="../../assets/send6.png" id="sendSms" type="button">
+                    <textarea id="smsArea" placeholder="Insert text message"></textarea>
+                    <img src="../../assets/send6.png" id="sendSms" type="button" (click)="sendMessage()">
                 </div>
             </div>
         </div>

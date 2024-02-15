@@ -1,6 +1,7 @@
 
-<nav class="navbar-skeleton">            
-    <div id="logo"></div>
+<nav class="navbar-skeleton" >            
+    <img id="logoContact" src="../../assets/contact5.png" (click)="gotoContacts()" #contactIcon >
+
     <ul  id="navbar-right-items">
         <li (click)="doLogin()"  [style.display]="isAuthWinOpen()? 'none':'block'">LOGIN</li>
         <li (click)="doRegister()"  [style.display]="isAuthWinOpen()? 'none':'block'">REGISTER</li>

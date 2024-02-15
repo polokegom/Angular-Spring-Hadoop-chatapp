@@ -15,7 +15,7 @@ export class LoginComponent {
   }
 
   doLogin(){
-    this.localStore.isSignIn = true;
+    this.localStore.setSignInStatus(true);
     this.router.navigate(['/chatroom']);
 
   }
