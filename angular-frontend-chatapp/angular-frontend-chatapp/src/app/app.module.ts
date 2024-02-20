@@ -11,6 +11,7 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HomepageComponent } from './homepage/homepage.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     BrowserModule,
     MatMenuModule,
     MatDialogModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
