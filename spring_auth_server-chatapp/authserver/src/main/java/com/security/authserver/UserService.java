@@ -22,4 +22,9 @@ public class UserService {
     public User getUserById(String Id) {
         return userDatasource.findById(Id).orElse(null); 
     }
+    public User saveUser(User user){
+        
+        return userDatasource.save(user);
+        
+    }
 }
