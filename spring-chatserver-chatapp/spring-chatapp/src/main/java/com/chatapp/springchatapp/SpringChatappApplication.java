@@ -10,7 +10,7 @@ public class SpringChatappApplication {
  * 1  Wait for connections
  * 
  * - New connection steps:
- * 1. Verify Oauth
+ * 1. Verify JWT Token
  * 2. Establish WebSocket connection
  * 3. During init, Find Kafka metadata for connection
  * 4. During Init, Load all messages of clients Kafka topic
