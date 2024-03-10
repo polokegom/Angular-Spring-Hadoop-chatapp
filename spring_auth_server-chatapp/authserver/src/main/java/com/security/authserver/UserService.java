@@ -19,6 +19,14 @@ public class UserService {
 
     }
 
+    public boolean verifyUserDetails(User user){
+
+        userDatasource.checkIsValidUser(user.getUserEmail(), user.getUserPassword());
+
+        return true;
+
+    }
+
     public User getUserById(String Id) {
         return userDatasource.findById(Id).orElse(null); 
     }

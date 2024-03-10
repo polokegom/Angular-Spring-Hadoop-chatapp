@@ -12,12 +12,20 @@ public class ApiController {
     
     @Autowired
     private UserService userService;
-
-    @GetMapping("/authenticate") 
-    public List<User> authenticateUser() {
+    private final String SECREY_KEY = "f7a98c5e66c74127d28e93ab589fd98d";
+    @PostMapping("/authenticate") 
+    public List<User> authenticateUser(@RequestBody User user) {
+        
+        userService.verifyUserDetails(user);
         List<User> listOfUsers = userService.getAllUsers();
 
         return userService.getAllUsers();
+    }
+
+    public Boolean registerUser(@RequestBody User user){
+
+        return true;
+
     }
  
 }
