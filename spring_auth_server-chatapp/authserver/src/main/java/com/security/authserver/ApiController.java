@@ -25,11 +25,14 @@ public class ApiController {
     private UserService userService;
     private final String SECRET_KEY_STRING = "f7a98c5e66c74127d28e93ab589fd98d";
     private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes(StandardCharsets.UTF_8));
+    
     @PostMapping("/authenticate") 
     public List<User> authenticateUser(@RequestBody User user) {
         long currentTime = System.currentTimeMillis();
         Date today = new Date(currentTime);
-        Date expiryDate = new Date(currentTime + 1000*60*60*60);
+        final int hr = 1000*60*60;
+        final int day =hr*24;
+        Date expiryDate = new Date(currentTime + day);
         String jwtToken = Jwts.builder().subject(user.getUserEmail()).claim("password", user.getUserPassword())
         .issuedAt(today).expiration(expiryDate).signWith(SECRET_KEY, SIG.HS256)
         .compact();   
