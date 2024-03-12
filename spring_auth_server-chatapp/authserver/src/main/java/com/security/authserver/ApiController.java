@@ -28,7 +28,7 @@ public class ApiController {
     private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes(StandardCharsets.UTF_8));
     
     @PostMapping("/authenticate") 
-    public JSONObject authenticateUser(@RequestBody String userData) {
+    public String authenticateUser(@RequestBody String userData) {
         
         JSONObject objUser = new JSONObject(userData);
         String userEmail = objUser.getString("useremail");
@@ -55,20 +55,26 @@ public class ApiController {
             response.put("activation",currentTime);
             response.put("expiration", currentTime + day);
 
-        } else
+        } else {
             response.put("success", false);
+            response.put("message", "Invalid login details");
+
+        } 
 
 
-        return response;
+        return response.toString();
     }
 
 
-    @PostMapping("/registration")
-    public Boolean registerUser(@RequestBody String userData){
-        JSONObject objUser = new JSONObject(userData);
-
-        return true;
-
+    @PostMapping("/register")
+    public String registerUser(@RequestBody String user) {
+        System.out.println("-----------------");
+        System.out.println(user.toString());
+        System.out.println("-----------------");
+        // Perform user registration logic
+        
+        return "User registered successfully";
     }
+
  
 }

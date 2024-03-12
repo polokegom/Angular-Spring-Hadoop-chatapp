@@ -20,11 +20,13 @@ public class UserService {
 
     }
 
-    public boolean verifyUserDetails(String userEmail, String userPassword){
+    public User verifyUserDetails(String userEmail, String userPassword){
 
         Optional<User> validUser = userDatasource.checkIsValidUser(userEmail, userPassword);
-
-        return validUser.isPresent();
+        if (validUser.isPresent())
+            return validUser.get();
+        else
+            return null;
 
     }
 
