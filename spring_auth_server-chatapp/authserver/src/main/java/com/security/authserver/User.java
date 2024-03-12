@@ -45,4 +45,16 @@ public class User implements Serializable{
     public String getUserKafkaBrokerIP() {
         return kafkabrokerIP;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", useremail='" + useremail + '\'' +
+                ", password='" + password + '\'' +
+                ", kafkacluster='" + kafkacluster + '\'' +
+                ", kafkabrokerIP='" + kafkabrokerIP + '\'' +
+                '}';
+    }
 }

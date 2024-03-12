@@ -2,6 +2,7 @@ package com.security.authserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -19,11 +20,11 @@ public class UserService {
 
     }
 
-    public boolean verifyUserDetails(User user){
+    public boolean verifyUserDetails(String userEmail, String userPassword){
 
-        userDatasource.checkIsValidUser(user.getUserEmail(), user.getUserPassword());
+        Optional<User> validUser = userDatasource.checkIsValidUser(userEmail, userPassword);
 
-        return true;
+        return validUser.isPresent();
 
     }
 

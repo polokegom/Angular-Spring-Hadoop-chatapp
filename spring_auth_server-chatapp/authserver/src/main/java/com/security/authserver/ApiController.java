@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.crypto.SecretKey;
-
+import org.json.JSONObject;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.Jwts.SIG;
 import io.jsonwebtoken.security.Keys;
@@ -12,6 +12,7 @@ import io.jsonwebtoken.security.SignatureAlgorithm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties.Jwt;
+import org.springframework.boot.jackson.JsonObjectSerializer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,24 +28,44 @@ public class ApiController {
     private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes(StandardCharsets.UTF_8));
     
     @PostMapping("/authenticate") 
-    public List<User> authenticateUser(@RequestBody User user) {
-        long currentTime = System.currentTimeMillis();
-        Date today = new Date(currentTime);
-        final int hr = 1000*60*60;
-        final int day =hr*24;
-        Date expiryDate = new Date(currentTime + day);
-        String jwtToken = Jwts.builder().subject(user.getUserEmail()).claim("password", user.getUserPassword())
-        .issuedAt(today).expiration(expiryDate).signWith(SECRET_KEY, SIG.HS256)
-        .compact();   
-        userService.verifyUserDetails(user);
+    public JSONObject authenticateUser(@RequestBody String userData) {
+        
+        JSONObject objUser = new JSONObject(userData);
+        String userEmail = objUser.getString("useremail");
+        String userPassword = objUser.getString("password");
+        JSONObject response = new JSONObject();
+
+        //Validate if valid user
+        User validUser = userService.verifyUserDetails(userEmail, userPassword);
+
+        if (validUser != null) {
+            
+            //Build JWT Token using HS256 Algorithm        
+            long currentTime = System.currentTimeMillis();
+            Date today = new Date(currentTime);
+            final int hr = 3600000;
+            final int day =hr*24;
+            Date expiryDate = new Date(currentTime + day);
+            String jwtToken = Jwts.builder().subject(userEmail).claim("password", userPassword)
+            .issuedAt(today).expiration(expiryDate).signWith(SECRET_KEY, SIG.HS256)
+            .compact();           
+            
+            response.put("success",true);
+            response.put("authentication", jwtToken);
+            response.put("activation",currentTime);
+            response.put("expiration", currentTime + day);
+
+        } else
+            response.put("success", false);
 
 
-        List<User> listOfUsers = userService.getAllUsers();
-
-        return userService.getAllUsers();
+        return response;
     }
 
-    public Boolean registerUser(@RequestBody User user){
+
+    @PostMapping("/registration")
+    public Boolean registerUser(@RequestBody String userData){
+        JSONObject objUser = new JSONObject(userData);
 
         return true;
 
