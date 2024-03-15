@@ -111,7 +111,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   doLogout():void{
     //this.overlay.openOverlay(RegisterComponent)
-    this.local_store.setSignInStatus(false)
+    //this.local_store.setSignInStatus()
     this.local_store.closeAuthWin()
     this.router.navigate(['/']);
     

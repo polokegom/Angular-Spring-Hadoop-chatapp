@@ -27,8 +27,9 @@ export class LocalstoreService {
       return this.isSignIn;
   }
 
-  public setSignInStatus(status: boolean): void {
-      this.isSignIn = status
+  public setSignInStatus(token: string): void {
+    sessionStorage.setItem("penguOAuthToken", token);
+    this.isSignIn = true;
   }
 
   public isAuthWinOpen(): boolean {
