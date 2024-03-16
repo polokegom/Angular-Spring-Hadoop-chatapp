@@ -49,12 +49,12 @@ public class User implements Serializable{
     @Override
     public String toString() {
         return "{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                ", useremail='" + useremail + '\'' +
-                ", password='" + password + '\'' +
-                ", kafkacluster='" + kafkacluster + '\'' +
-                ", kafkabrokerIP='" + kafkabrokerIP + '\'' +
+                "id:'" + id + '\'' +
+                ", username:'" + username + '\'' +
+                ", useremail:'" + useremail + '\'' +
+                ", password:'" + password + '\'' +
+                ", kafkacluster:'" + kafkacluster + '\'' +
+                ", kafkabrokerIP:'" + kafkabrokerIP + '\'' +
                 '}';
     }
 }

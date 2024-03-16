@@ -16,6 +16,10 @@ import io.jsonwebtoken.security.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties.Jwt;
 import org.springframework.boot.jackson.JsonObjectSerializer;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +34,8 @@ public class ApiController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private JavaMailSender javaMail;
     private final String SECRET_KEY_STRING = "f7a98c5e66c74127d28e93ab589fd98d";
     private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes(StandardCharsets.UTF_8));
 
@@ -52,7 +58,10 @@ public class ApiController {
             final int hr = 3600000;
             final int day = hr * 24;
             Date expiryDate = new Date(currentTime + day);
-            String jwtToken = Jwts.builder().subject(userEmail).claim("password", userPassword)
+            String jwtToken = Jwts.builder().subject(userEmail)
+            .claim("password", userPassword)
+            .claim("KafkaTopic","").
+            claim("","")
                     .issuedAt(today).expiration(expiryDate).signWith(SECRET_KEY, SIG.HS256)
                     .compact();
 
@@ -71,22 +80,35 @@ public class ApiController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@RequestBody String user) {
+    public ResponseEntity<String> registerUser(@RequestBody String user) {
+
+        JSONObject objUser = new JSONObject(user.toString());
         System.out.println("-----------------");
         System.out.println(user.toString());
         System.out.println("-----------------");
         // Perform user registration logic
-
-        return "User registered successfully";
+        JSONObject response = new JSONObject();
+        response.put("success",true);
+        //Send greeting email via SMTP server
+        /*
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setSubject("Welcome to Pengu");
+        email.setFrom("welcome@penguchatapp.com");
+        email.setTo(objUser.getString("useremail"));
+        */
+        return ResponseEntity.status(HttpStatus.CREATED).body(response.toString());
     }
 
-    @GetMapping("/verification")
+    @GetMapping("/verify")
     public String authValidation(@RequestHeader("authorisation") String token){
 
 
+        Claims userClaims = Jwts.parser().verifyWith(SECRET_KEY).build().parseSignedClaims(token).getPayload();
+        //String kafkaBroker = (String)userClaims.get("kafkabroker");
+        //String kafkaTopic = (String)userClaims.get("kafkatopic");
+        
         JSONObject response = new JSONObject();
-        Claims userDetails = Jwts.parser().verifyWith(SECRET_KEY).build().parseSignedClaims(token).getPayload();
-        response.put("isValid",true);
+        response.put("success",true);
 
         return response.toString();
 
