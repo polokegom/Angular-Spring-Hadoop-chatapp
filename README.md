@@ -3,7 +3,7 @@ This is a project to experiment with building a highly scalable chatapp using An
 # Port Allocation For Experimentation
 - NGINX: 60430
 - Chatapp site (Angular Frontend): 4200
-- Authentication Server: 54000
+- Authentication Server: 26000
 - MongoDB Server: 54677
 - Chatapp Server instance 1: 53000
 - Chatapp Server instance 2: 53001
