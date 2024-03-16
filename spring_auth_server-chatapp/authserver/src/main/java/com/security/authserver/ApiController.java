@@ -34,8 +34,8 @@ public class ApiController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private JavaMailSender javaMail;
+   // @Autowired
+   // private JavaMailSender javaMail;
     private final String SECRET_KEY_STRING = "f7a98c5e66c74127d28e93ab589fd98d";
     private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes(StandardCharsets.UTF_8));
 
@@ -80,15 +80,31 @@ public class ApiController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody String user) {
+    public ResponseEntity<String> registerUser(@RequestBody User user) {
 
-        JSONObject objUser = new JSONObject(user.toString());
+        String userName = user.getUserName();
+        String userEmail = user.getUserEmail();
         System.out.println("-----------------");
         System.out.println(user.toString());
         System.out.println("-----------------");
+
+        JSONObject res = new JSONObject();
+        ResponseEntity<String> response;
+        res.put("success",false);
+
+        if (userService.verifyUserDetails(userName, userEmail) == null) {
+            res.put("success",true);
+            userService.saveUser(user);
+            response = ResponseEntity.status(HttpStatus.CREATED).body(res.toString());
+
+        } else {
+            res.put("message","The username or email is already under-use");
+            response = ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(res.toString());
+        }
+
+
         // Perform user registration logic
-        JSONObject response = new JSONObject();
-        response.put("success",true);
+
         //Send greeting email via SMTP server
         /*
         SimpleMailMessage email = new SimpleMailMessage();
@@ -96,7 +112,7 @@ public class ApiController {
         email.setFrom("welcome@penguchatapp.com");
         email.setTo(objUser.getString("useremail"));
         */
-        return ResponseEntity.status(HttpStatus.CREATED).body(response.toString());
+        return response;
     }
 
     @GetMapping("/verify")
