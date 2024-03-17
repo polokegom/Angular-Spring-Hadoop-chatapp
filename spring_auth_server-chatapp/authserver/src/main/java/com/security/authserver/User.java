@@ -15,8 +15,8 @@ public class User implements Serializable{
     private String username;
     @Field("useremail")
     private String useremail;
-    @Field("password")
-    private String password;
+    @Field("userpassword")
+    private String userpassword;
     @Field("kafkacluster")
     private String kafkacluster;
     @Field("kafkabrokerIP")
@@ -24,6 +24,27 @@ public class User implements Serializable{
 
     public String getID() {
         return id;
+    }
+
+
+    public void setUserName(String username) {
+        this.username = username;
+    }
+
+    public void setUserEmail(String useremail) {
+        this.useremail = useremail;
+    }
+
+    public void setUserPassword(String userpassword) {
+        this.userpassword = userpassword;
+    }
+
+    public void setUserKafkaCluster(String kafkacluster) {
+        this.kafkacluster = kafkacluster;
+    }
+
+    public void setUserKafkaBrokerIP(String kafkabrokerIP) {
+        this.kafkabrokerIP = kafkabrokerIP;
     }
 
     public String getUserName() {
@@ -35,7 +56,7 @@ public class User implements Serializable{
     }
 
     public String getUserPassword() {
-        return password;
+        return userpassword;
     }
 
     public String getUserKafkaCluster() {
@@ -52,7 +73,7 @@ public class User implements Serializable{
                 "id:'" + id + '\'' +
                 ", username:'" + username + '\'' +
                 ", useremail:'" + useremail + '\'' +
-                ", password:'" + password + '\'' +
+                ", userpassword:'" + userpassword + '\'' +
                 ", kafkacluster:'" + kafkacluster + '\'' +
                 ", kafkabrokerIP:'" + kafkabrokerIP + '\'' +
                 '}';

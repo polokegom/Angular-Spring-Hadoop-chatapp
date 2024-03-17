@@ -34,8 +34,11 @@ public class ApiController {
 
     @Autowired
     private UserService userService;
-   // @Autowired
-   // private JavaMailSender javaMail;
+    @Autowired
+    private KafkaTopicService kafkaTopicService;
+    
+    // @Autowired
+    // private JavaMailSender javaMail;
     private final String SECRET_KEY_STRING = "f7a98c5e66c74127d28e93ab589fd98d";
     private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes(StandardCharsets.UTF_8));
 
@@ -44,7 +47,7 @@ public class ApiController {
 
         JSONObject objUser = new JSONObject(userData);
         String userEmail = objUser.getString("useremail");
-        String userPassword = objUser.getString("password");
+        String userPassword = objUser.getString("userpassword");
         JSONObject response = new JSONObject();
 
         // Validate if valid user
@@ -59,11 +62,13 @@ public class ApiController {
             final int day = hr * 24;
             Date expiryDate = new Date(currentTime + day);
             String jwtToken = Jwts.builder().subject(userEmail)
-            .claim("password", userPassword)
-            .claim("KafkaTopic","").
-            claim("","")
+                    .claim("ID", validUser.getID())
+         
+                    .claim("username", validUser.getUserName())
+                    .claim("kafkabrokerIP", validUser.getUserKafkaBrokerIP())
                     .issuedAt(today).expiration(expiryDate).signWith(SECRET_KEY, SIG.HS256)
                     .compact();
+            Claims userClaims = Jwts.parser().verifyWith(SECRET_KEY).build().parseSignedClaims(jwtToken).getPayload();
 
             response.put("success", true);
             response.put("authentication", jwtToken);
@@ -90,41 +95,42 @@ public class ApiController {
 
         JSONObject res = new JSONObject();
         ResponseEntity<String> response;
-        res.put("success",false);
+        res.put("success", false);
 
         if (userService.verifyUserDetails(userName, userEmail) == null) {
-            res.put("success",true);
+            KafkaTopic kafkaTopic = kafkaTopicService.getKafkaTopic();
+            user.setUserKafkaCluster(kafkaTopic.getKafkaCluster());
+            user.setUserKafkaBrokerIP(kafkaTopic.getKafkaBrokerIP());
+
+            res.put("success", true);
             userService.saveUser(user);
             response = ResponseEntity.status(HttpStatus.CREATED).body(res.toString());
 
         } else {
-            res.put("message","The username or email is already under-use");
+            res.put("message", "The username or email is already taken");
             response = ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(res.toString());
         }
 
-
         // Perform user registration logic
 
-        //Send greeting email via SMTP server
+        // Send greeting email via SMTP server
         /*
-        SimpleMailMessage email = new SimpleMailMessage();
-        email.setSubject("Welcome to Pengu");
-        email.setFrom("welcome@penguchatapp.com");
-        email.setTo(objUser.getString("useremail"));
-        */
+         * SimpleMailMessage email = new SimpleMailMessage();
+         * email.setSubject("Welcome to Pengu");
+         * email.setFrom("welcome@penguchatapp.com");
+         * email.setTo(objUser.getString("useremail"));
+         */
         return response;
     }
 
     @GetMapping("/verify")
-    public String authValidation(@RequestHeader("authorisation") String token){
+    public String authValidation(@RequestHeader("authorisation") String token) {
 
 
         Claims userClaims = Jwts.parser().verifyWith(SECRET_KEY).build().parseSignedClaims(token).getPayload();
-        //String kafkaBroker = (String)userClaims.get("kafkabroker");
-        //String kafkaTopic = (String)userClaims.get("kafkatopic");
-        
+        String kafkaBroker = (String) userClaims.get("KafkabrokerIP");
         JSONObject response = new JSONObject();
-        response.put("success",true);
+        response.put("success", true);
 
         return response.toString();
 

@@ -27,11 +27,10 @@ public class Exceptions {
     @ExceptionHandler({MalformedJwtException.class, SignatureException.class})
     public ResponseEntity<String> handleFalseJwtToken(Exception e) {
 
-
         JSONObject response = new JSONObject();
         response.put("success",false);
-        response.put("message","");
-        return response;
+        response.put("message","Invalid Authentication token sent");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response.toString());
     }
     
 }
