@@ -35,6 +35,7 @@ public class ApiController {
     @Autowired
     private UserService userService;
     @Autowired
+
     private KafkaTopicService kafkaTopicService;
     
     // @Autowired
@@ -85,31 +86,49 @@ public class ApiController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody User user) {
+    public ResponseEntity<String> registerUser(@RequestBody String userData) {
 
-        String userName = user.getUserName();
-        String userEmail = user.getUserEmail();
+        JSONObject objectUser = new JSONObject(userData);
+        String userName = objectUser.getString("username");
+        String userEmail = objectUser.getString("useremail");
+        User user = new User();
+        user.setUserEmail(userEmail);
+        user.setUserName(userName);
+        user.setUserPassword(objectUser.getString("userpassword"));
         System.out.println("-----------------");
+        System.out.println(objectUser.toString());
         System.out.println(user.toString());
+
         System.out.println("-----------------");
 
         JSONObject res = new JSONObject();
         ResponseEntity<String> response;
         res.put("success", false);
+        System.out.println("^^^^^^^^^^^^^^^");
 
         if (userService.verifyUserDetails(userName, userEmail) == null) {
+            System.out.println("$$$$$$$$$$$$$$$$$$$");
+
             KafkaTopic kafkaTopic = kafkaTopicService.getKafkaTopic();
-            user.setUserKafkaCluster(kafkaTopic.getKafkaCluster());
-            user.setUserKafkaBrokerIP(kafkaTopic.getKafkaBrokerIP());
 
-            res.put("success", true);
-            userService.saveUser(user);
-            response = ResponseEntity.status(HttpStatus.CREATED).body(res.toString());
+            if (kafkaTopic != null) {
+                System.out.println("****************");
 
+                user.setUserKafkaCluster(kafkaTopic.getKafkaCluster());
+                user.setUserKafkaBrokerIP(kafkaTopic.getKafkaBrokerIP());
+                res.put("success", true);
+                userService.saveUser(user);
+                response = ResponseEntity.status(HttpStatus.CREATED).body(res.toString());
+            } else {
+                res.put("message", "The system has reached its maximum clients");
+                response = ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(res.toString());
+            }
         } else {
             res.put("message", "The username or email is already taken");
             response = ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(res.toString());
         }
+        System.out.println("%%%%%%%%%%%");
+
 
         // Perform user registration logic
 

@@ -4,8 +4,8 @@ This is a directory used to document the Authentication database of the Applicat
 # Instructions to install MongoDB database:
 ```bash
  docker pull mongo
- docker run --name mongodb -d -p 27000:27017 mongo
- sudo docker exec -it mongodb mongosh
+ docker run --name database -d -p 54677:27017 mongo
+ sudo docker exec -it database mongosh
 
-'''
+```
 

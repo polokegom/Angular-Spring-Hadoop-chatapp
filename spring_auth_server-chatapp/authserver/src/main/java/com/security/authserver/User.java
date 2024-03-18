@@ -25,8 +25,6 @@ public class User implements Serializable{
     public String getID() {
         return id;
     }
-
-
     public void setUserName(String username) {
         this.username = username;
     }
@@ -35,9 +33,11 @@ public class User implements Serializable{
         this.useremail = useremail;
     }
 
+
     public void setUserPassword(String userpassword) {
         this.userpassword = userpassword;
     }
+
 
     public void setUserKafkaCluster(String kafkacluster) {
         this.kafkacluster = kafkacluster;
@@ -48,23 +48,23 @@ public class User implements Serializable{
     }
 
     public String getUserName() {
-        return username;
+        return this.username;
     }
 
     public String getUserEmail() {
-        return useremail;
+        return this.useremail;
     }
 
     public String getUserPassword() {
-        return userpassword;
+        return this.userpassword;
     }
 
     public String getUserKafkaCluster() {
-        return kafkacluster;
+        return this.kafkacluster;
     }
 
     public String getUserKafkaBrokerIP() {
-        return kafkabrokerIP;
+        return this.kafkabrokerIP;
     }
 
     @Override
