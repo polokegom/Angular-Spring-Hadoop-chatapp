@@ -35,7 +35,6 @@ public class ApiController {
     @Autowired
     private UserService userService;
     @Autowired
-
     private KafkaTopicService kafkaTopicService;
     
     // @Autowired
@@ -95,24 +94,16 @@ public class ApiController {
         user.setUserEmail(userEmail);
         user.setUserName(userName);
         user.setUserPassword(objectUser.getString("userpassword"));
-        System.out.println("-----------------");
-        System.out.println(objectUser.toString());
-        System.out.println(user.toString());
-
-        System.out.println("-----------------");
 
         JSONObject res = new JSONObject();
         ResponseEntity<String> response;
         res.put("success", false);
-        System.out.println("^^^^^^^^^^^^^^^");
 
         if (userService.verifyUserDetails(userName, userEmail) == null) {
-            System.out.println("$$$$$$$$$$$$$$$$$$$");
 
             KafkaTopic kafkaTopic = kafkaTopicService.getKafkaTopic();
 
             if (kafkaTopic != null) {
-                System.out.println("****************");
 
                 user.setUserKafkaCluster(kafkaTopic.getKafkaCluster());
                 user.setUserKafkaBrokerIP(kafkaTopic.getKafkaBrokerIP());
@@ -124,11 +115,10 @@ public class ApiController {
                 response = ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(res.toString());
             }
         } else {
+
             res.put("message", "The username or email is already taken");
             response = ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(res.toString());
         }
-        System.out.println("%%%%%%%%%%%");
-
 
         // Perform user registration logic
 

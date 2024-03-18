@@ -32,12 +32,21 @@ public class KafkaTopic {
     }
 
     public String getKafkaBrokerIP() {
-        return kafkabrokerIP;
+        return this.kafkabrokerIP;
     }
 
     public String getKafkaCluster() {
 
-        return kafkacluster;
+        return this.kafkacluster;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id:'" + id + '\'' +
+                ", kafkacluster:'" + kafkacluster + '\'' +
+                ", kafkabrokerIP:'" + kafkabrokerIP + '\'' +
+                '}';
     }
     
 }
