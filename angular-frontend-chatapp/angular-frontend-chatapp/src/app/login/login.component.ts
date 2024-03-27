@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { LocalstoreService } from '../localstore.service';
 import { RestStoreService } from '../rest-store.service';
 import { Router } from '@angular/router';
+import {ViewChild, ElementRef} from '@angular/core';
+
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css' ]
 })
 export class LoginComponent {
+  @ViewChild("userEmail", { static: true }) userEmail!: ElementRef<HTMLInputElement>;;
+  @ViewChild("userPassword", { static: true }) userPassword!: ElementRef<HTMLInputElement>;;
 
   constructor(private localStore: LocalstoreService, private restStore: RestStoreService, private router:Router){
 
@@ -17,15 +21,17 @@ export class LoginComponent {
 
   doLogin(){
     alert("1")
-    this.restStore.doLogin("lerato@gmail.com","Lerato123#").subscribe((response)=>{
+    let strUserEmail: string = this.userEmail.nativeElement.value;
+    let strUserPassword: string = this.userPassword.nativeElement.value;
+    let authToken: string = "";
+    this.restStore.doLogin(strUserEmail,strUserPassword).subscribe((response)=>{
 
-        alert(response)
-        alert(response.expiration)
-        //var objResponse: JSON = JSON.parse(response);
-        this.localStore.setSignInStatus(response);
-        this.router.navigate(['/chatroom']);
+        this.localStore.setSignInStatus(response.authentication);
+        if (response.success == true)
+          this.router.navigate(['/chatroom']);
+        else
+          alert("Invalid email or password");
     })
-    alert("2")
 
     
 

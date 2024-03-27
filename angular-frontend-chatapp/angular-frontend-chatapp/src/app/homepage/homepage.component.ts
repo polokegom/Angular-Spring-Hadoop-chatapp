@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { LocalstoreService } from '../localstore.service';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-homepage',

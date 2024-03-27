@@ -16,13 +16,19 @@ export class RestStoreService {
       alert(JSON.stringify(data));
 
     })*/
-    return this.http.post<any>("http://localhost:26000/authenticate", {useremail: userEmail, password: userPassword});
+    return this.http.post<any>("http://localhost:26000/authenticate", {useremail: userEmail, userpassword: userPassword});
   }
 
   public doRegister(userName: String, userEmail: String, userPassword: String): boolean{
-    let data = {username: userName, useremail: userEmail, password: userPassword};
+    let data = {username: userName, useremail: userEmail,userpassword: userPassword};
     const  observable:Observable<any>  = this.http.post<any>("127.0.0.1:26000/register", data)
     return false;
+  }
+
+
+  public verifyJwtToken(token: string):Observable<any>{
+    let header: Headers =new Headers({"authorisation":token});
+    return this.http.get<any>("http://locahost:26000/verify");
   }
 
   public queryUserName(userName: String): String {

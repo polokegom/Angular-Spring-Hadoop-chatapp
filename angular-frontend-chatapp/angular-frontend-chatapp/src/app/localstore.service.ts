@@ -2,6 +2,7 @@ import { ElementRef, Injectable, Renderer2 } from '@angular/core';
 import { ReducerManager } from '@ngrx/store';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SessionStorage } from 'ngx-webstorage';
+import { RestStoreService } from './rest-store.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,19 +17,23 @@ export class LocalstoreService {
   btnNavbarNonContact!: ElementRef;
   isAuthWinLive: boolean = false;
 
-  constructor() {
+  constructor(private reststore: RestStoreService) {
   
   }
 
   //----------------------------------------
   
   public getSignInStatus(): boolean {
-
-      return this.isSignIn;
+      let jwtToken:string|null = sessionStorage.getItem("penguAuthToken");
+      
+      let isValid: boolean = false
+      if (jwtToken != null)
+        this.reststore.verifyJwtToken(jwtToken!).subscribe((response)=>isValid = response.success)
+      return isValid;
   }
 
   public setSignInStatus(token: string): void {
-    sessionStorage.setItem("penguOAuthToken", token);
+    sessionStorage.setItem("penguAuthToken", token);
     this.isSignIn = true;
   }
 
