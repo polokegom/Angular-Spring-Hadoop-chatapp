@@ -13,6 +13,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ExampleComponent } from './example/example.component';
 import { DialogexampleComponent } from './dialogexample/dialogexample.component';
+import { SplashComponent } from './splash/splash.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DialogexampleComponent } from './dialogexample/dialogexample.component'
     ChatroomComponent,
     HomepageComponent,
     ExampleComponent,
-    DialogexampleComponent
+    DialogexampleComponent,
+    SplashComponent
   ],
   imports: [
     BrowserModule,

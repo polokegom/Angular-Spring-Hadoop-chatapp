@@ -7,6 +7,9 @@ import { RestStoreService } from './rest-store.service';
   providedIn: 'root'
 })
 export class LocalstoreService {
+  static getSignInStatus(): boolean | import("@angular/router").UrlTree | import("rxjs").Observable<boolean | import("@angular/router").UrlTree> | Promise<boolean | import("@angular/router").UrlTree> {
+    throw new Error('Method not implemented.');
+  }
   
   authToken: any;
   private isSignIn: boolean =false;
@@ -35,6 +38,11 @@ export class LocalstoreService {
   public setSignInStatus(token: string): void {
     sessionStorage.setItem("penguAuthToken", token);
     this.isSignIn = true;
+  }
+
+  public closeSignInStatus(): void {
+    sessionStorage.removeItem("penguAuthToken");
+      this.isSignIn = true;
   }
 
   public isAuthWinOpen(): boolean {

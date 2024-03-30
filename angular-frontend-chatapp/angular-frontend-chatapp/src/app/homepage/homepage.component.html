@@ -1,6 +1,18 @@
-<div class="container">
 
-    <img src="../../assets/pengu7.jpg" width="300px" height="300px">
-   <!--<p>A highly scalable Chatapp</p>-->
-   <p style="font-size: small;">Chat app&copy;2024</p>
-</div>
+<nav class="navbar-skeleton" >            
+    <div></div>
+    <ul  id="navbar-right-items">
+        <li (click)="goToLogin()"  [style.display]="checkHomeMainPage() ? 'block' : 'none'">LOGIN</li>
+        <li (click)="goToRegister()"  [style.display]="checkHomeMainPage()? 'block':'none'">REGISTER</li>
+    </ul> 
+</nav>
+
+
+
+
+<!--<ng-container *ngComponentOutlet="currentPage" #page></ng-container>-->
+<ng-container [ngSwitch]="pagestate">
+    <app-splash *ngSwitchCase="''" (closepage)="goToHome()"></app-splash>
+    <app-login *ngSwitchCase="'login'" (closepage)="goToHome()"></app-login>
+    <app-register *ngSwitchCase="'register'" (closepage)="goToHome()"></app-register>
+</ng-container>

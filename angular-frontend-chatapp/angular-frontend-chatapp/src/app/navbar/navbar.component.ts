@@ -4,6 +4,7 @@ import { RegisterComponent } from '../register/register.component';
 import { LocalstoreService } from '../localstore.service';
 import { Router,   NavigationStart, NavigationEnd} from '@angular/router';
 import { Location } from '@angular/common';
+import { HomepageComponent } from '../homepage/homepage.component';
 
 @Component({
   selector: 'app-navbar',
@@ -15,10 +16,11 @@ import { Location } from '@angular/common';
 export class NavbarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('contactIcon') btnContact!: ElementRef;
+  @ViewChild(HomepageComponent) homepageComponent!: HomepageComponent;
   private styleResponsiveNav : any;
   private  onClickContact: any;
   private currentRoute!: string;
-  
+  private webpageStateForNav: string = ""; 
   constructor(private location: Location,private router:Router,private local_store: LocalstoreService, private dom: ElementRef, private renderer:Renderer2){
     this.styleResponsiveNav = `'@media screen and (max-width: 740px)' {
     
@@ -48,7 +50,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   }
   
-  ngAfterViewInit(): void {
+  ngAfterViewInit(): void {    
+    alert(this.homepageComponent);
+
     this.local_store.btnNavbarContact = this.btnContact;
     this.local_store.navRenderer = this.renderer;
 
@@ -69,11 +73,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   
   }
 
-  responsiveNavbar() {
+  public setPagestateForNav(state: string) {
 
-
+    this.webpageStateForNav = state;
   }
 
+  public checkHomeMainPage(): boolean {
+    return (this.webpageStateForNav === "")&& (this.location.path() === "")
+  }
+
+
+  public checkChatPage(): boolean {
+
+    return this.location.path() === "/chatroom"
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event:any) {
@@ -88,33 +101,22 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   
-  isAuthWinOpen():boolean{
-      return this.local_store.isAuthWinLive
-  }
-
-  isSignedIn():boolean{
-    return this.local_store.getSignInStatus()
-}
-
-  
   doLogin():void{
      // this.overlay.openOverlay(LoginComponent)
-     this.local_store.openAuthWin();
-     this.router.navigate(['/login']);
+    
+//     this.homepage.goToLogin();
   }
 
   doRegister():void{
       //this.overlay.openOverlay(RegisterComponent)
-      this.local_store.openAuthWin()
-      this.router.navigate(['/register']);
+  //    this.homepage.goToRegister();
   }
 
   doLogout():void{
     //this.overlay.openOverlay(RegisterComponent)
     //this.local_store.setSignInStatus()
-    this.local_store.closeAuthWin()
+    this.local_store.closeSignInStatus()
     this.router.navigate(['/']);
-    
   }
 
   gotoContacts(){

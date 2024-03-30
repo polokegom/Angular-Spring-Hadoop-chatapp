@@ -3,9 +3,11 @@
     <img id="logoContact" src="../../assets/contact5.png" (click)="gotoContacts()" #contactIcon >
 
     <ul  id="navbar-right-items">
-        <li (click)="doLogin()"  [style.display]="isAuthWinOpen()? 'none':'block'">LOGIN</li>
-        <li (click)="doRegister()"  [style.display]="isAuthWinOpen()? 'none':'block'">REGISTER</li>
-        <li (click)="doLogout()"  [style.display]="isSignedIn()? 'block':'none'">LOGOUT</li>
+        <a [routerLink]="[{ outlets: { login: '' } }]">
+            <li [style.display]="checkHomeMainPage() ? 'block' : 'none'">LOGIN</li>
+          </a>
+         <li (click)="doRegister()"  [style.display]="checkHomeMainPage()? 'block':'none'">REGISTER</li>
+        <li (click)="doLogout()"  [style.display]="checkChatPage()? 'block':'none'">LOGOUT</li>
         <!--<li (click)="loginFunc()" [style.display]="loggedinStatus()? 'none':'block'">LOGIN</li>
         <li (click)="regFunc()" [style.display]="loggedinStatus()? 'none':'block'">REGISTER</li>
         <a routerLink="" [style.display]="!loggedinStatus()? 'none':'block'"><li>SignOut</li></a>

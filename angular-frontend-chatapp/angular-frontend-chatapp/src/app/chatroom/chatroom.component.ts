@@ -1,24 +1,32 @@
-import { AfterViewInit, Component, ElementRef, Renderer2,ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2,ViewChild } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { LocalstoreService } from '../localstore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chatroom',
   templateUrl: './chatroom.component.html',
   styleUrls: ['./chatroom.component.css']
 })
-export class ChatroomComponent implements AfterViewInit{
+export class ChatroomComponent implements AfterViewInit, OnInit{
 
   private isContactClicked: boolean = false;
-  constructor(private renderer: Renderer2, private localstore: LocalstoreService) {
+  constructor(private renderer: Renderer2, private localStore: LocalstoreService, private router: Router) {
     
-    this.localstore.isOnContactPage = false;
+    this.localStore.isOnContactPage = false;
   }
+
+  ngOnInit(): void {
+    if (this.localStore.getSignInStatus())
+      this.router.navigate(["/chatroom"]);
+  }
+  
+
   ngAfterViewInit(): void {  
   
-    this.localstore.setOnClickEventContacts(()=>{
+    this.localStore.setOnClickEventContacts(()=>{
       alert("clicked")
-      this.localstore.isOnContactPage = true
+      this.localStore.isOnContactPage = true
       
     })
   }
@@ -29,7 +37,7 @@ export class ChatroomComponent implements AfterViewInit{
   }
 
   gotoContacts() {
-    return this.localstore.isOnContactPage;
+    return this.localStore.isOnContactPage;
   }
 
   sendMessage(){
