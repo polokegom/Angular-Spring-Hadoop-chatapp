@@ -98,8 +98,8 @@ public class ApiController {
         JSONObject res = new JSONObject();
         ResponseEntity<String> response;
         res.put("success", false);
-
-        if (userService.verifyUserDetails(userName, userEmail) == null) {
+        
+        if (userService.verifyUserEmailNname(userName, userEmail) == null) {
 
             KafkaTopic kafkaTopic = kafkaTopicService.getKafkaTopic();
 

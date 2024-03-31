@@ -23,9 +23,13 @@ public class UserService {
     public User verifyUserDetails(String userEmail, String userPassword){
 
         Optional<User> validUser = userDatasource.checkIsValidUser(userEmail, userPassword);
+        System.out.println("=======================");
+
         System.out.println(validUser.toString());
+        System.out.println("======================== ");
+
         if (validUser.isPresent())
-            return validUser.get();
+        return validUser.get();
         else
             return null;
 
