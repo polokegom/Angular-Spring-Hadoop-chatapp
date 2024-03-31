@@ -16,7 +16,6 @@ import { HomepageComponent } from '../homepage/homepage.component';
 export class NavbarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('contactIcon') btnContact!: ElementRef;
-  @ViewChild(HomepageComponent) homepageComponent!: HomepageComponent;
   private styleResponsiveNav : any;
   private  onClickContact: any;
   private currentRoute!: string;
@@ -51,7 +50,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   
   ngAfterViewInit(): void {    
-    alert(this.homepageComponent);
 
     this.local_store.btnNavbarContact = this.btnContact;
     this.local_store.navRenderer = this.renderer;

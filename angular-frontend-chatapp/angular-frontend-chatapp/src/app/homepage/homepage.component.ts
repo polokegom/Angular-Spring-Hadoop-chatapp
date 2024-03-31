@@ -43,7 +43,6 @@ export class HomepageComponent implements OnInit {
 
   public goToHome():void{
       this.pagestate = ""
-
   }
 
   

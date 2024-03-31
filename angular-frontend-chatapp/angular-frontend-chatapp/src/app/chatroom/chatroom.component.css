@@ -207,3 +207,112 @@ ul {
 
 }
 
+
+
+/*
+
+    NAVBAR CSS
+*/
+
+
+
+nav{
+    margin-top:0px;
+    background-color: rgb(255, 255, 255);
+
+}
+
+
+
+.navbar-skeleton {
+    margin: 0px;
+    padding:0px;
+    width:100%;
+    z-index: 100;
+    height:70px;
+    background-color: rgb(14, 128, 193);
+    box-shadow: 2px;
+    display: flex;
+    justify-content: space-between;
+    margin-right:50px;  
+
+   /* box-shadow: 0 10px 10px rgba(146, 161, 176, 0.15);*/
+
+}
+
+#logoContact {
+    padding: 0px;
+    margin-top: 25px;
+    margin-left: 27px;
+    width:25px;
+    height:25px;
+    top:0px;
+    
+    visibility:hidden;
+}
+
+@font-face {
+
+    font-family: 'logofont';
+    src: url('../../assets/LemonDays.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  
+}
+
+
+
+.navbar-skeleton img {
+
+    width: 40px;
+    height: 36px;
+
+}
+
+
+
+
+.navbar-skeleton ul li:hover {
+   
+    /*text-decoration: underline;*/
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: rgb(131, 129, 129);
+}
+
+.navbar-skeleton #logoContact:hover {
+    
+    cursor: pointer;
+    color: rgb(43, 44, 44);
+}
+
+
+.navbar-skeleton ul  {
+
+    
+    list-style: none;
+    display: flex;
+    margin-top: 30px; 
+
+}
+
+.navbar-skeleton ul li {
+       
+    margin-right:20px;
+}
+
+
+div #navbar-right-items {
+    margin-top: 27px; 
+}
+
+#navbar-right-items {
+
+
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(244, 242, 242);
+    list-style-type: none;
+    margin-right:20px;
+
+}

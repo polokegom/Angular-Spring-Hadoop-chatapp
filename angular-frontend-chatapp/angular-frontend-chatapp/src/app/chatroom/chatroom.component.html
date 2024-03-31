@@ -1,4 +1,17 @@
-<div id="chatroom" [ngClass]="gotoContacts()?'contactPage':''">
+
+<nav class="navbar-skeleton" >            
+    <img id="logoContact" src="../../assets/contact5.png" (click)="gotoContacts()" #contactIcon >
+    <ul  id="navbar-right-items">
+        <li (click)="doLogout()">LOGOUT</li>
+
+    </ul> 
+</nav>
+
+
+
+
+
+<div id="chatroom" [ngClass]="!gotoContacts()?'contactPage':''">
     <div id="contacts">
         <div id="contactParentField">
             <input id="contactField" placeholder="Search Contact">

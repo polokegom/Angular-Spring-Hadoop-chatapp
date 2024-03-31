@@ -1,43 +1,57 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2,ViewChild } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2,ViewChild } from '@angular/core';
 import { LocalstoreService } from '../localstore.service';
-import { Router } from '@angular/router';
+import { Router,   NavigationStart, NavigationEnd} from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-chatroom',
   templateUrl: './chatroom.component.html',
   styleUrls: ['./chatroom.component.css']
 })
-export class ChatroomComponent implements AfterViewInit, OnInit{
+export class ChatroomComponent implements AfterViewInit{
 
   private isContactClicked: boolean = false;
-  constructor(private renderer: Renderer2, private localStore: LocalstoreService, private router: Router) {
-    
-    this.localStore.isOnContactPage = false;
-  }
+  @ViewChild('contactIcon') btnContact!: ElementRef;
 
-  ngOnInit(): void {
-    if (this.localStore.getSignInStatus())
-      this.router.navigate(["/chatroom"]);
-  }
+
+
+  constructor(private location: Location,private router:Router,private localStore: LocalstoreService, private dom: ElementRef, private renderer:Renderer2) {}
+
+
   
 
   ngAfterViewInit(): void {  
   
-    this.localStore.setOnClickEventContacts(()=>{
-      alert("clicked")
-      this.localStore.isOnContactPage = true
-      
-    })
+ 
+    if (window.innerWidth < 740) {
+      this.renderer.setStyle(this.btnContact.nativeElement, 'visibility', 'visible')
+    } else {
+      this.renderer.setStyle(this.btnContact.nativeElement, 'visibility', 'hidden')
+
+    }
+   
   }
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    const windowWidth = event.target.innerWidth;
+ 
+    if (windowWidth < 740) {
+      this.renderer.setStyle(this.btnContact.nativeElement,'visibility', 'visible')
+    } else {
+      this.renderer.setStyle(this.btnContact.nativeElement,'visibility', 'hidden')
+    }
+  }
+
 
   onClick(event: MouseEvent) {
     // Your click event logic here
     console.log('Contact icon clicked');
   }
 
-  gotoContacts() {
-    return this.localStore.isOnContactPage;
+  gotoContacts(): boolean {
+    return true
   }
 
   sendMessage(){
@@ -46,4 +60,12 @@ export class ChatroomComponent implements AfterViewInit, OnInit{
   
     
   }
+
+  doLogout():void{
+    //this.overlay.openOverlay(RegisterComponent)
+    //this.local_store.setSignInStatus()
+    this.router.navigate(['/']);
+  }
+
+
 }
