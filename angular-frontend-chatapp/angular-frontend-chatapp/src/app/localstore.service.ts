@@ -27,11 +27,24 @@ export class LocalstoreService {
   //----------------------------------------
   
   public getSignInStatus(): boolean {
+
       let jwtToken:string|null = sessionStorage.getItem("penguAuthToken");
-      
-      let isValid: boolean = false
+      let isValid: boolean = false;
+
       if (jwtToken != null)
-        this.reststore.verifyJwtToken(jwtToken!).subscribe((response)=>isValid = response.success)
+        isValid = this.reststore.verifyJwtToken(jwtToken)
+        //this.reststore.verifyJwtToken(jwtToken!).then((response)=> isValid = response.valueOf());
+
+       /* this.reststore.verifyJwtToken(jwtToken!).then((response)=> {
+          alert("Its working 1")
+          isValid =  response.success
+          alert("Its working")
+        
+        }).catch(((error)=>alert("error with Auth Server")))*/
+      // isValid =this.reststore.verifyJwtToken(jwtToken!).pipe(map((response:any)=> {return response.success}));
+
+      //if (jwtToken != null)
+      // this.reststore.verifyJwtToken(jwtToken!).subscribe((response)=>isValid = response.success)
       return isValid;
   }
 

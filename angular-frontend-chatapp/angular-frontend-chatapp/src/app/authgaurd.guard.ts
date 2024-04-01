@@ -1,6 +1,12 @@
-import { CanActivateFn } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { LocalstoreService } from './localstore.service';
+import { inject } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export const authgaurdGuard: CanActivateFn = (route, state) => {
-  return true;//LocalstoreService.getSignInStatus();
+  let isValid: boolean = inject(LocalstoreService).getSignInStatus();
+  if (!isValid)
+    inject(Router).navigate([''])
+
+    return isValid;
 };

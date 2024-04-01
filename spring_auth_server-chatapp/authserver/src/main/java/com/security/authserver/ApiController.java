@@ -42,6 +42,14 @@ public class ApiController {
     private final String SECRET_KEY_STRING = "f7a98c5e66c74127d28e93ab589fd98d";
     private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes(StandardCharsets.UTF_8));
 
+    /**
+     * POST API Endpoint: To login valid user
+     * On Success: HSA256 JWT token will be issued
+     * On Failure: A JSON response issuing an error message
+     * 
+     * @param userData JSON Request
+     * @return JSON Response
+     */
     @PostMapping("/authenticate")
     public String authenticateUser(@RequestBody String userData) {
 
@@ -84,6 +92,11 @@ public class ApiController {
         return response.toString();
     }
 
+    /**
+     * 
+     * @param userData
+     * @return
+     */
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody String userData) {
 
@@ -132,15 +145,26 @@ public class ApiController {
         return response;
     }
 
+    /**
+     * 
+     * 
+     * 
+     * @param token
+     * @return
+     */
     @GetMapping("/verify")
     public String authValidation(@RequestHeader("authorisation") String token) {
+
 
 
         Claims userClaims = Jwts.parser().verifyWith(SECRET_KEY).build().parseSignedClaims(token).getPayload();
         String kafkaBroker = (String) userClaims.get("KafkabrokerIP");
         JSONObject response = new JSONObject();
         response.put("success", true);
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^");
+        System.out.println(response.toString());
 
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^");
         return response.toString();
 
     }

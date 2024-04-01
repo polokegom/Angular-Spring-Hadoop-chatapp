@@ -11,7 +11,7 @@
 
 
 
-<div id="chatroom" [ngClass]="!gotoContacts()?'contactPage':''">
+<div id="chatroom" [ngClass]="gotoContacts()?'contactPage':''">
     <div id="contacts">
         <div id="contactParentField">
             <input id="contactField" placeholder="Search Contact">
