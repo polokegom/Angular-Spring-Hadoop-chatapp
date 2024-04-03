@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 })
 export class ChatroomComponent implements AfterViewInit{
 
-  private isNotContactPage: boolean =true;
+  private isContactPage: boolean =false;
   @ViewChild('contactIcon') btnContact!: ElementRef;
 
 
@@ -51,7 +51,7 @@ export class ChatroomComponent implements AfterViewInit{
   }
 
   gotoContacts(): boolean {
-    return this.isNotContactPage;
+    return this.isContactPage;
   }
 
   sendMessage(){

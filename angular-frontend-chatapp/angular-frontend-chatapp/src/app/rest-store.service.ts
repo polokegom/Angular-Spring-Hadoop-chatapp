@@ -19,10 +19,10 @@ export class RestStoreService {
     return this.http.post<any>("http://localhost:26000/authenticate", {useremail: userEmail, userpassword: userPassword});
   }
 
-  public doRegister(userName: String, userEmail: String, userPassword: String): boolean{
+  public doRegister(userName: String, userEmail: String, userPassword: String): Observable<any>{
     let data = {username: userName, useremail: userEmail,userpassword: userPassword};
     const  observable:Observable<any>  = this.http.post<any>("127.0.0.1:26000/register", data)
-    return false;
+    return observable;
   }
 
 

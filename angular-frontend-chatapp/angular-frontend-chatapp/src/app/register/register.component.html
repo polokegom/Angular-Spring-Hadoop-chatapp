@@ -6,13 +6,13 @@
     </div>
     <form class="winRegister">
       <span style="font-size: 12px;margin-right:135px; color:gray">Username:</span>
-      <input type="text" class="form-register-input" placeholder=""/>
+      <input type="text" class="form-register-input" placeholder="" #username/>
 
       <span style="font-size: 12px;margin-right:165px; color:gray">Email:</span>
-      <input type="text" class="form-register-input" placeholder=""/>
+      <input type="text" class="form-register-input" placeholder="" #useremail/>
 
       <span style="margin-top:5px;font-size: 12px;margin-right:145px; color:gray">Password:</span>
-      <input type="password" class="form-register-input" />
+      <input type="password" class="form-register-input" #userpassword/>
       
       <input type="button" class="form-register-btn" value="Sign Up" (click)="doRegister()"/>
     </form>
