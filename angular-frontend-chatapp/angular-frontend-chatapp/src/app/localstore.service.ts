@@ -11,20 +11,14 @@ export class LocalstoreService {
     throw new Error('Method not implemented.');
   }
   
-  authToken: any;
   private isSignIn: boolean =false;
-  btnNavbarContact!: ElementRef;
-  navRenderer!: any;
-  isOnContactPage:any;
   private onClickContact: any;
-  btnNavbarNonContact!: ElementRef;
-  isAuthWinLive: boolean = false;
+
 
   constructor(private reststore: RestStoreService) {
   
   }
 
-  //----------------------------------------
   
   public getSignInStatus(): boolean {
 
@@ -33,18 +27,7 @@ export class LocalstoreService {
 
       if (jwtToken != null)
         isValid = this.reststore.verifyJwtToken(jwtToken)
-        //this.reststore.verifyJwtToken(jwtToken!).then((response)=> isValid = response.valueOf());
 
-       /* this.reststore.verifyJwtToken(jwtToken!).then((response)=> {
-          alert("Its working 1")
-          isValid =  response.success
-          alert("Its working")
-        
-        }).catch(((error)=>alert("error with Auth Server")))*/
-      // isValid =this.reststore.verifyJwtToken(jwtToken!).pipe(map((response:any)=> {return response.success}));
-
-      //if (jwtToken != null)
-      // this.reststore.verifyJwtToken(jwtToken!).subscribe((response)=>isValid = response.success)
       return isValid;
   }
 
@@ -58,22 +41,6 @@ export class LocalstoreService {
       this.isSignIn = true;
   }
 
-  public isAuthWinOpen(): boolean {
-    return this.isAuthWinLive
-  }
-
-
-  //-----------------------------------------
-
-  public openAuthWin() {
-    this.isAuthWinLive = true;
-  }
-
-  public closeAuthWin() {
-    this.isAuthWinLive = false
-  }
-
-
   public setOnClickEventContacts(event_func: any) {
 
     this.onClickContact = event_func;
@@ -85,9 +52,5 @@ export class LocalstoreService {
   }
 
 
-/*
-  public changeToAuthNavbar(){
 
-    const newStyle = this.renderer.createElement('style');
-  }*/
 }
