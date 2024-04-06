@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
-import {ViewChild, ElementRef} from '@angular/core';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
