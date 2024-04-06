@@ -2,9 +2,6 @@ package com.chatapp.springchatapp;
 public class KafkaProducer {
 
 
-    public void sendKafkaMessage(String message){
-
-        
-    }
+    public void sendKafkaMessage(String message) {} 
     
 }
