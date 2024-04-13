@@ -1,3 +1,3 @@
-FROM nginx:alpine
+FROM nginx:1.25.4-alpine-slim
 COPY nginx.conf /etc/nginx/nginx.conf
-EXPOSE 80
+EXPOSE 30000
