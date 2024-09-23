@@ -1,4 +1,5 @@
 package com.chatapp.springchatapp;
+import com.chatapp.springchatapp.Models.ChatMessage;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -13,14 +14,23 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.server.ServerEndpoint;
 
+/**
+ *
+ */
 @Component
 public class SocketServer {
     
-    @MessageMapping("/sendmessage")
-
-    public void sendMessage(String sms){
+    @MessageMapping("/clientmessage")
+    public void clientMessage(ChatMessage  sms){
 
     }
+
+    @MessageMapping("/notification")
+    public void notification() {
+
+
+    }
+
 
     //Personal note: Link Kafka Consumer to this section
     @Scheduled(fixedRate=1000)
