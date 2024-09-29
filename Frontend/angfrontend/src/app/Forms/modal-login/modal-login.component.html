@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Login</h2>
+<mat-dialog-content class="mat-typography">
+<form [formGroup]="loginForm" class="myform">
+    <div class="wintextbox">
+        <label for="loginEmail" class="form-label">Email address</label>
+        <input type="email" id="loginEmail" formControlName="UserEmail">
+        
+        <!--Email Error Handling-->
+        <div *ngIf="UserEmail.invalid && (UserEmail.touched || hasFormSubmitted)" class="error">
+          <small *ngIf="UserEmail.errors?.['required']">⚠️Email is required!</small>
+          <small *ngIf="UserEmail.errors?.['email']">⚠️Invalid email address!</small>
+        </div>
+      </div>
+      <div class="wintextbox">
+        <label for="loginPassword" class="form-label">Password</label>
+        <input type="password" id="loginPassword"  formControlName="UserPassword">
+  
+        <!--Password Error Handling-->
+        <div *ngIf="UserPin.invalid && (UserPin.touched || hasFormSubmitted)" class="error">
+          <small *ngIf="UserPin.errors?.['required']" >⚠️Password is required!</small>
+          <small *ngIf="UserPin.errors?.['minlength']">⚠️Password must have a minimum of 6 characters!</small>
+        </div>
+    </div>
+</form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="btn">Cancel</button>
+  <button mat-button [mat-dialog-close]="true"  class="btn" (click)="OnClickLogin()">Confirm</button>
+</mat-dialog-actions>

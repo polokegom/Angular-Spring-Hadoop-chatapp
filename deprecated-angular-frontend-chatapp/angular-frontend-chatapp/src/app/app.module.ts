@@ -23,7 +23,7 @@ import { SplashComponent } from './splash/splash.component';
     RegisterComponent,
     ChatroomComponent,
     HomepageComponent,
-    ExampleComponent,
+    ExampleComponent, 
     DialogexampleComponent,
     SplashComponent
   ],

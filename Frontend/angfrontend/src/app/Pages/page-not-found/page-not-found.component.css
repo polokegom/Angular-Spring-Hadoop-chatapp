@@ -1,0 +1,48 @@
+.page-not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:80%;
+  }
+  
+  .page-not-found h1 {
+    font-size: 5em;
+    margin-bottom: 20px;
+  }
+  
+  .page-not-found p {
+    font-size: 1.5em;
+  }
+  
+  .homepage {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #007bff;
+    text-decoration: underline;
+  }
+
+  .homepage:hover {
+    cursor:pointer
+  }
+
+    
+  .btn {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+

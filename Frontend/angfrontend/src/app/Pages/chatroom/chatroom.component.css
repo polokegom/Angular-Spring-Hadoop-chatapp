@@ -1,0 +1,308 @@
+:root {
+    --navbar_height: 200px; 
+  }
+
+
+
+#contactParentField{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 243, 243);
+    height:70px
+}
+
+
+#chatroom{
+
+    display:flex;
+    min-height: calc(100vh - 72px);
+}
+
+#contacts{
+    
+    border: 1px solid rgb(232, 228, 228);
+    width: 280px;
+    border-radius: 10px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+}
+
+
+
+#contactBox{
+
+    overflow-y: auto;
+    min-height: calc(100vh - 140px);;
+
+    height: calc(100vh - 140px);;
+}
+
+#smsArea{
+    resize: none;
+    width:400px;
+    height:15px;
+    padding:12px;
+    padding-left: 15px;
+    padding-right: 30px;
+    border-radius: 10px;
+    border: 1px solid rgb(145, 142, 142);;
+    border-radius: 7px;
+    overflow: hidden;
+    resize: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+}
+
+
+
+#sendSms{
+
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    transform: translateY(-50%);
+    width: 20px;
+    height: auto; 
+
+}
+
+#sendSms:hover{
+    cursor:pointer;
+}
+
+#smsFieldParent{
+    display:flex;
+    justify-content: center;
+    border-top:1px solid  rgb(222, 216, 216);
+
+}
+
+#chatHeader{
+    height: 70px;
+    display:flex;
+    font-weight:bold;
+    color:rgb(95, 92, 92);
+    padding-left:40px;;
+    align-items: center;
+    border-bottom: 1px solid rgb(222, 218, 218);
+
+}
+
+.smsBlock {
+
+    border:1px solid;
+}
+.smsBox{
+    overflow-y: auto;
+    min-height: calc(100vh - 202px);
+    height: calc(100vh - 202px);;
+}
+ul {
+    
+}
+.smsBox ul li{
+    padding-top: 20px;
+    padding-left: 40px;
+    border-radius: 10px;;
+    background-color: rgb(235, 231, 231);
+    margin-top: 20px;
+    width:400px;
+    list-style: none;
+    height: 100px;
+}
+
+#contacts ul li {
+
+    padding-top: 20px;
+    padding-left: 40px;
+    border-radius: 6px;
+    background-color: rgb(240, 236, 236);
+    margin-top: 20px;
+    width:150px;
+    list-style: none;
+    height: 40px;
+
+}
+
+#contacts ul li:hover {
+
+    cursor: pointer;
+     background-color: rgb(15, 121, 187);
+    /*   background-color: rgb(28, 115, 168);*/
+    color: rgb(255, 255, 255);
+
+}
+#container {
+    position: relative;
+  }
+#smsFieldBackground{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    height:60px;
+}
+
+
+#contactField{
+    width: 192px;
+    height:30px;
+    border: 1px solid rgb(145, 142, 142);;
+    border-radius: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+#chats {
+    min-width: calc(100vw - 280px);
+    display:grid;
+}
+
+
+@media screen and (max-width: 740px) {
+    
+    #contacts{
+        display: none;
+    }
+    #chats {
+        min-width: 100vw;
+    }
+
+    #smsArea{
+        width:80vw;
+    }
+  }
+
+  
+  .contactPage #chats {
+  
+      display:none;
+  }
+  
+  .contactPage #contactParentField{
+
+    width: 99vw;
+    min-width: 99vw;
+}
+
+.contactPage #contactBox {
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 99vw;
+    min-width: 99vw;
+    min-height: calc(100vh - 143px);;
+
+    height: calc(100vh - 143px);;
+
+}
+
+.contactPage #contacts {
+
+    display: grid;
+    width: 99vw;
+    min-width: 99vw;
+
+}
+
+
+
+/*
+
+    NAVBAR CSS
+*/
+
+
+
+nav{
+    margin-top:0px;
+    background-color: rgb(255, 255, 255);
+
+}
+
+
+
+.navbar-skeleton {
+    margin: 0px;
+    padding:0px;
+    width:100%;
+    z-index: 100;
+    height:70px;
+    background-color: rgb(14, 128, 193);
+    box-shadow: 2px;
+    display: flex;
+    justify-content: space-between;
+    margin-right:50px;  
+
+   /* box-shadow: 0 10px 10px rgba(146, 161, 176, 0.15);*/
+
+}
+
+#logoContact {
+    padding: 0px;
+    margin-top: 25px;
+    margin-left: 27px;
+    width:25px;
+    height:25px;
+    top:0px;
+    
+    visibility:hidden;
+}
+
+
+.navbar-skeleton img {
+
+    width: 40px;
+    height: 36px;
+
+}
+
+
+
+
+.navbar-skeleton ul li:hover {
+   
+    /*text-decoration: underline;*/
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: rgb(131, 129, 129);
+}
+
+.navbar-skeleton #logoContact:hover {
+    
+    cursor: pointer;
+    color: rgb(43, 44, 44);
+}
+
+
+.navbar-skeleton ul  {
+
+    
+    list-style: none;
+    display: flex;
+    margin-top: 30px; 
+
+}
+
+.navbar-skeleton ul li {
+       
+    margin-right:20px;
+}
+
+
+div #navbar-right-items {
+    margin-top: 27px; 
+}
+
+#navbar-right-items {
+
+
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(244, 242, 242);
+    list-style-type: none;
+    margin-right:20px;
+
+}

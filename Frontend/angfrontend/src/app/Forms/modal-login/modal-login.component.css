@@ -1,0 +1,63 @@
+
+ 
+  
+  .forms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 99%;
+  }
+
+  .error{
+    color:rgb(158, 33, 33);
+    display:flex;
+    flex-direction: column;
+  }
+  
+  .passedvalidator{
+    color:rgb(33, 91, 158);
+    display:flex;
+    flex-direction: column;
+  }
+  
+  
+  .form {
+    flex: 1;
+    margin: 10px;
+    max-width:100px;
+  }
+
+
+  
+
+
+  input {
+    height:30px;
+  }
+
+ 
+  
+  .form-label {
+    margin-bottom: 5px;
+  }
+  
+  .wintextbox {
+    display:grid;
+    margin-bottom: 15px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    background-color: #1782c9;
+    color: #fff;
+    border: 1px solid #1c72ab;
+    margin-right:15px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: white;
+    color: #1c72ab;
+
+  }

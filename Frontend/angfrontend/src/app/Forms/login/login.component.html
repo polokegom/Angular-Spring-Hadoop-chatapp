@@ -1,0 +1,30 @@
+<div id="base">
+    
+  <div id="headers">
+    <span id="title">Sign In</span>
+    <img id="exit" src="../../assets/cross.png" (click)="closeWindow()">
+  </div>
+<form [formGroup]="loginForm" class="winLogin">
+    <div class="wintextbox">
+        <label for="loginEmail" class="form-label">Email address</label>
+        <input type="email" id="loginEmail" formControlName="UserEmail">
+        
+        <!--Email Error Handling-->
+        <div *ngIf="UserEmail.invalid && (UserEmail.touched || hasFormSubmitted)" class="error">
+          <small *ngIf="UserEmail.errors?.['required']">⚠️Email is required!</small>
+          <small *ngIf="UserEmail.errors?.['email']">⚠️Invalid email address!</small>
+        </div>
+      </div>
+      <div class="wintextbox">
+        <label for="loginPassword" class="form-label">Password</label>
+        <input type="password" id="loginPassword"  formControlName="UserPassword">
+  
+        <!--Password Error Handling-->
+        <div *ngIf="UserPin.invalid && (UserPin.touched || hasFormSubmitted)" class="error">
+          <small *ngIf="UserPin.errors?.['required']" >⚠️Password is required!</small>
+          <small *ngIf="UserPin.errors?.['minlength']">⚠️Password must have a minimum of 6 characters!</small>
+        </div>
+    </div>
+    <a class="form-login-link">Trouble logging in?</a>
+  </form>
+</div>

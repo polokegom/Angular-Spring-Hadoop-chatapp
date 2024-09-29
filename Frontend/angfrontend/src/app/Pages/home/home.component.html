@@ -1,0 +1,7 @@
+<ng-container [ngSwitch]="isLoggedIn">
+    <div class="spinner" *ngSwitchCase="0">
+      <mat-spinner></mat-spinner>
+    </div>
+    <app-authentication *ngSwitchCase="1" ></app-authentication>
+    <app-chat-space *ngSwitchCase="2" ></app-chat-space>
+</ng-container>
