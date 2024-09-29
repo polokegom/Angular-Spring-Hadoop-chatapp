@@ -21,7 +21,6 @@ import { AdminComponent } from './Pages/admin/admin.component';
 import { ModalLoginComponent } from './Forms/modal-login/modal-login.component';
 import { ModalRegisterComponent } from './Forms/modal-register/modal-register.component';
 import { ModalAuthenticationComponent } from './Pages/modal-authentication/modal-authentication.component';
-import { ChatroomComponent } from './Pages/chatroom/chatroom.component';
 
 
 @NgModule({
@@ -37,8 +36,7 @@ import { ChatroomComponent } from './Pages/chatroom/chatroom.component';
     ModalLoginComponent,
     ModalRegisterComponent,
     ModalAuthenticationComponent,
-    ChatroomComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
